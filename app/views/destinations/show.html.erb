@@ -13,19 +13,26 @@
 <h3>Reviews</h3>
 
 
+<% if user_signed_in? %>
+
 <div id="review_form">
 
   <%= form_for([@destination, Review.new]) do |f| %>
-    <%= f.label "Write your review:"%>
-    <%= f.text_area :content %>
-    <%= f.submit %>
+  <%= f.label "Write your review:"%>
+  <%= f.text_area :content %>
+  <%= f.submit %>
   <% end %>
 
 </div>
+<% else %>
+<p>Only after login you can enter the text </p>
+<p><%= link_to "Log out", destroy_user_session_path, :method => :destroy %></p>
+<%=link_to "Log In",new_user_session_path%>
 
+<% end %>
 <% @reviews.each do |review| %>
 
-  <p><%= review.content %></p>
+<p><%= review.content %></p>
 
 <% end %>
 
