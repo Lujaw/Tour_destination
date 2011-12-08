@@ -39,20 +39,20 @@ class DestinationsController < ApplicationController
   # GET /destinations/1/edit
   def edit
     @destination = Destination.find(params[:id])
-     if current_user.id = @destination.user_id
-         else
-         format.html { redirect_to @destination, notice: 'You have no authentication to edit the content.' }
-         end
+     # if @destination.user_id == current_user
+     #       save_and_open_page
+     #          else
+     #          format.html {redirect_to @destination, notice: 'You have no authority to edit the content.' }
+     #          end
   end
 
   # POST /destinations
   # POST /destinations.json
   def create
     @destination = Destination.new(params[:destination])
-    @destination.user_id = current_user.id
     
-
-    respond_to do |format|
+    # @destination->user_id = current_user->id
+      respond_to do |format|
       if @destination.save
         format.html { redirect_to @destination, notice: 'Destination was successfully created.' }
         format.json { render json: @destination, status: :created, location: @destination }

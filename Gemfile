@@ -29,5 +29,8 @@ group :test do
   gem 'selenium'
   gem 'database_cleaner'
   gem 'rspec-rails'
+  gem 'valid_attribute'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-rspec'
   gem 'turn', '~> 0.8.3', :require => false
 end
