@@ -1,5 +1,6 @@
 class Destination < ActiveRecord::Base
   has_many :reviews
+  belongs_to :user
   
   
    class User < ActiveRecord::Base
