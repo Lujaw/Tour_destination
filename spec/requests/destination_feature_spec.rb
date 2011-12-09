@@ -1,9 +1,15 @@
 require 'spec_helper'
 
-describe "Destination" do
+describe Destination do
   
-  it { should have_valid(:title).when('The destination', 'Nepal tourism', '2011 year') }
-  it { should_not have_valid(:title).when('""', '', 'Dest') }
+  it { should have_valid( :title).when('The destination', 'Nepal tourism', '2011 year') }
+  it { should_not have_valid( :title).when('""', '', 'Dest') }
+  it { should have_valid( :title).when('9734598374597','(Dest)*&(&&^(&#@*^$^(@#($#))))') }
+  
+  
+  
+  
+  
  # it "Listing the destinations" do
  #   Factory(:destination, :description =>"New Destination") 
  #   visit destinations_path

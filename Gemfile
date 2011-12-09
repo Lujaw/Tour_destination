@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
 gem 'sqlite3'
-
+gem 'carrierwave'
 gem 'devise'
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'
