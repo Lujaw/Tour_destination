@@ -4,6 +4,8 @@ gem 'rails', '3.1.3'
 gem 'sqlite3'
 gem 'carrierwave'
 gem 'devise'
+# gem "rmagick", :require => 'RMagick'
+gem "rmagick", "~> 1.15.17", :require => 'RMagick'
 group :assets do
   gem 'sass-rails',   '~> 3.1.5'
   gem 'coffee-rails', '~> 3.1.1'
