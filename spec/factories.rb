@@ -5,14 +5,14 @@ FactoryGirl.define do
     user ''
   end 
   sequence :email do |n|
-     example#{n}@hotmail.com
+    email  'example#{n}@hotmail.com'
   end
   factory :review do 
     content 'The nice place/movie.'
   end
   factory :user do 
-        email ''
-        password ''
-        password_confirmation ''
-      end
+    email 'hello@hello.com'
+    password 'sprout'
+    password_confirmation 'sprout'
+ end
 end

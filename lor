@@ -1,0 +1,16 @@
+[31mF[0m
+
+Failures:
+
+  1) Login Check if the login details don't match
+     [31mFailure/Error:[0m [31muser = Factory(:user, :email =>"hell@yahoo.com", :password =>"sprout123")[0m
+     [31mActiveRecord::RecordInvalid:[0m
+       [31mValidation failed: Password doesn't match confirmation[0m
+[36m     # ./spec/requests/login_spec.rb:7:in `block (2 levels) in <top (required)>'[0m
+
+Finished in 10.89 seconds
+[31m1 example, 1 failure[0m
+
+Failed examples:
+
+[31mrspec ./spec/requests/login_spec.rb:5[0m [36m# Login Check if the login details don't match[0m
