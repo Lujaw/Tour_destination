@@ -1,12 +1,8 @@
 class DestinationsController < ApplicationController
   # GET /destinations
   # GET /destinations.json
-  
-  
-  
   def index
     @destinations = Destination.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @destinations }
@@ -39,20 +35,25 @@ class DestinationsController < ApplicationController
   # GET /destinations/1/edit
   def edit
     @destination = Destination.find(params[:id])
-     # if @destination.user_id == current_user
-     #       save_and_open_page
-     #          else
-     #          format.html {redirect_to @destination, notice: 'You have no authority to edit the content.' }
-     #          end
+   
+    if @destination.user != current_user
+      redirect_to destinations_path
+      flash[:alert] = "You don't have authorization to edit this page"
+    end
+    # if @destination.user_id == current_user
+    #       save_and_open_page
+    #          else
+    #          format.html {redirect_to @destination, notice: 'You have no authority to edit the content.' }
+    #          end
   end
 
   # POST /destinations
   # POST /destinations.json
   def create
-    @destination = Destination.new(params[:destination])
-    
+    @destination = current_user.destinations.new(params[:destination])
+
     # @destination->user_id = current_user->id
-      respond_to do |format|
+    respond_to do |format|
       if @destination.save
         format.html { redirect_to @destination, notice: 'Destination was successfully created.' }
         format.json { render json: @destination, status: :created, location: @destination }
@@ -67,7 +68,6 @@ class DestinationsController < ApplicationController
   # PUT /destinations/1.json
   def update
     @destination = Destination.find(params[:id])
-
     respond_to do |format|
       if @destination.update_attributes(params[:destination])
         format.html { redirect_to @destination, notice: 'Destination was successfully updated.' }
@@ -83,11 +83,16 @@ class DestinationsController < ApplicationController
   # DELETE /destinations/1.json
   def destroy
     @destination = Destination.find(params[:id])
-    @destination.destroy
+    if @destination.user == current_user
+      @destination.destroy
 
-    respond_to do |format|
-      format.html { redirect_to destinations_url }
-      format.json { head :ok }
+      respond_to do |format|
+        format.html { redirect_to destinations_url }
+        format.json { head :ok }
+      end
+    else 
+      flash[:alert] = "You can't delete post of other author."
+      redirect_to destinations_path
     end
   end
 end

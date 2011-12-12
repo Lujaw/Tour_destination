@@ -17,7 +17,7 @@
 
 <div id="review_form">
 
-  <%= form_for([@destination, Review.new]) do |f| %>
+  <%= form_for([@destination, Review.new], :remote =>true, :html => {:id => 'review_form1' }) do |f| %>
   <%= f.label "Write your review:"%>
   <%= f.text_area :content %>
   <%= f.submit %>
@@ -25,16 +25,15 @@
 
 </div>
 <% else %>
-<p>Only after login you can enter the text </p>
+<p>Only after login you can edit the text </p>
 <p><%= link_to "Log out", destroy_user_session_path, :method => :destroy %></p>
 <%=link_to "Log In",new_user_session_path%>
 
 <% end %>
-<% @reviews.each do |review| %>
+<div id = "reviews">
+<%= render @reviews %>
+</div>
 
-<p><%= review.content %></p>
-
-<% end %>
 
 <%= link_to 'Edit', edit_destination_path(@destination) %> |
 <%= link_to 'Back', destinations_path %>
