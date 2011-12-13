@@ -1,7 +1,8 @@
 <h1>Listing destinations</h1>
 
-<table>
+<table id="dest">
   <tr>
+    <th>Icon</th>
     <th>Title</th>
     <th>Description</th>
     <th></th>
@@ -9,24 +10,34 @@
     <th></th>
   </tr>
 
-  <% @destinations.each do |destination| %>
-  <tr>
-    <td><%= destination.title %></td>
-    <td><%= destination.description %></td>
-    <td><%= link_to 'Show', destination %></td>
-    
-    <% if user_signed_in? %>
-    <td><%= link_to 'Edit', edit_destination_path(destination) %></td>
-    <td><%= link_to 'Destroy', destination, confirm: 'Are you sure?', method: :delete %></td>
-    <%end%>
-  
-  </tr>
-  <% end %>
+  <%= render @destinations %>
+
 </table>
 
 <br />
 
-
+<% if user_signed_in? %>
 <div id ="new_destination">
-  <%= link_to 'New Destination', new_destination_path %>
+  New Destination
+</div>
+<% end %>
+<div id = "show_new">
+  <%= form_for(Destination.new, :remote =>true) do |f| %>
+  <div class="field">
+     <%= f.label :title %><br />
+     <%= f.text_field :title %>
+   </div>
+   <div class="field">
+     <%= f.label :description %><br />
+     <%= f.text_area :description %>
+   </div>
+   <div class="field">
+     <%= f.label :photo %><br />
+     <%= f.file_field :photo %>
+   </div>
+
+   <div class="actions">
+     <%= f.submit %>
+   </div>
+   <% end %>
 </div>

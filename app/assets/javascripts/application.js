@@ -6,4 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.Jcrop
 //= require_tree .
+$('#new_destination').live("click", function(){
+  $('#show_new').show();
+});

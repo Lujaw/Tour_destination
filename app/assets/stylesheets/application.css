@@ -1,27 +1,58 @@
 /*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require_self
- *= require_tree . 
+* This is a manifest file that'll automatically include all the stylesheets available in this directory
+* and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+* the top of the compiled file, but it's generally better to create a new file per style scope.
+*= require_self
+*= require_tree 
+*=require jquery.Jcrop
 */
 
 #wrapper {
   width:800px;
-  margin-left:auto;
-  margin-right:auto;
+  margin-left : auto;
+  margin-right : auto;
 }
 
 body{
-  background-color:blue;
+  background-color : white;
+  width : auto;
+  margin-left : auto;
+  margin-right : auto;
+
+}
+#show_new{
+  display : none;
 }
 
-
+#new_destination{
+  text-decoration : underline;
+}
 
 textarea {
-  width:200px;
-  min-height:60px;
-  
-  
+  width : 200px;
+  min-height : 60px;  
 }
 
+#top_nav
+{
+  text-align : right;
+
+}
+
+table
+{
+  border-collapse : collapse;
+  color : black;
+}
+
+table,th, td
+{
+  border : 1px solid black;
+}
+
+th{
+  font-family : Arial; 
+  font-size : 16pt;
+  padding : 5px;
+  background-color : #7CB5F7; 
+}
