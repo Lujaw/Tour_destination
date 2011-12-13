@@ -4,6 +4,7 @@ gem 'rails', '3.1.3'
 gem 'sqlite3'
 gem 'carrierwave'
 gem 'devise'
+gem 'rmagick'
 # gem "rmagick", :require => 'RMagick'
 #gem "rmagick", "~> 1.15.17", :require => 'RMagick'
 group :assets do
@@ -18,7 +19,7 @@ group :test, :development do
   gem 'rspec-rails'
   gem 'pry'
   gem 'pry-doc'
-  gem 'ruby-debug19' ,:require =>'ruby-debug'
+ # gem 'ruby-debug19' ,:require =>'ruby-debug'
   #gem "ruby-debug-base19", "0.11.23", :require => nil
 end
 

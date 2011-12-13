@@ -24,18 +24,19 @@ class DestinationsController < ApplicationController
   # GET /destinations/new
   # GET /destinations/new.json
   def new
-    @destination = Destination.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @destination }
+     if user_signed_in? 
+      @destination = Destination.new
+   
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @destination }
+      end
     end
   end
-
   # GET /destinations/1/edit
   def edit
     @destination = Destination.find(params[:id])
-   
+
     if @destination.user != current_user
       redirect_to destinations_path
       flash[:alert] = "You don't have authorization to edit this page"
@@ -51,12 +52,15 @@ class DestinationsController < ApplicationController
   # POST /destinations.json
   def create
     @destination = current_user.destinations.new(params[:destination])
-
-    # @destination->user_id = current_user->id
     respond_to do |format|
       if @destination.save
-        format.html { redirect_to @destination, notice: 'Destination was successfully created.' }
-        format.json { render json: @destination, status: :created, location: @destination }
+        if params[:destination][:photo].present?
+          render :template =>"destinations/crop" and return
+        
+        else 
+          format.html { redirect_to @destination, notice: 'Destination was successfully created.' }
+          format.js #on { render json: @destination, status: :created, location: @destination }
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @destination.errors, status: :unprocessable_entity }
@@ -70,6 +74,13 @@ class DestinationsController < ApplicationController
     @destination = Destination.find(params[:id])
     respond_to do |format|
       if @destination.update_attributes(params[:destination])
+        if params[:destination][:photo].present?
+          render :template =>"destinations/crop" and return
+        
+        else 
+          format.html { redirect_to @destination, notice: 'Destination was successfully created.' }
+          format.json { render json: @destination, status: :created, location: @destination }
+        end 
         format.html { redirect_to @destination, notice: 'Destination was successfully updated.' }
         format.json { head :ok }
       else
